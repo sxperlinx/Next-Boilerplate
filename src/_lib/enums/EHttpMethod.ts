@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 enum HttpMethod {
 	GET = 'GET',
 	POST = 'POST',

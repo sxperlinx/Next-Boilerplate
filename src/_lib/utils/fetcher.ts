@@ -1,43 +1,33 @@
-/* eslint-disable no-unused-vars */
-import HttpMethod from 'lib/enums/EHttpMethod';
-
-// Function overloads
-export async function fetcher(url: string): Promise<unknown>;
-export async function fetcher(url: string, httpMethod: HttpMethod): Promise<unknown>;
-export async function fetcher(url: string, headers: HeadersInit): Promise<unknown>;
-export async function fetcher(url: string, httpMethod: HttpMethod, headers: HeadersInit): Promise<unknown>;
-export async function fetcher(url: string, httpMethod: HttpMethod, headers: HeadersInit, body: unknown): Promise<unknown>;
+import IRequest from 'lib/interfaces/payload/requests';
+import IResponse from '../interfaces/payload/responses';
 
 // Implementation
-export async function fetcher(
-    url: string,
-    arg1?: HttpMethod | HeadersInit,
-    arg2?: HeadersInit,
-    arg3?: unknown,
-): Promise<unknown> {
-    const options: RequestInit = {};
+export async function fetcher(req: IRequest): Promise<IResponse> {
+	let checkStatus = false;
 
-    if (typeof arg1 === 'string') {
-        options.method = arg1;
-        if (arg2) {
-            options.headers = arg2;
-        }
-        if (arg3) {
-            options.body = JSON.stringify(arg3);
-        }
-    } else if (arg1) {
-        options.headers = arg1;
-        if (arg2) {
-            options.body = JSON.stringify(arg2);
-        }
-    }
+	if (req.checkStatus) {
+		checkStatus = true;
+	}
 
-    const response = await fetch(url, options);
-    const data = await response.json();
+	const response = await fetch(
+		req.id ? req.url + `/${req.id}` : req.url, {
+		method: req.method,
+		headers: req.headers,
+		body: req.body ? JSON.stringify(req.body) : undefined
+	});
+	const data = await response.json();
+	
+	if (checkStatus) {
+		if (response.status !== 200 && response.status !== req.expectedStatus) {
+			throw new Error(data.message || response.statusText);
+		}
+	}
 
-    if (response.status !== 200) {
-        throw new Error(data.message || response.statusText);
-    }
-    
-    return data;
+	const fetchResponse: IResponse = {
+		status: response.status,
+		message: data.message || response.statusText,
+		data: data
+	};
+
+	return fetchResponse;
 }
