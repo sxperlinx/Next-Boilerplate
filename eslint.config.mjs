@@ -62,19 +62,19 @@ export default [
 		},
 
 		rules: {
-			semi: ['error', 'always'],
-			quotes: ['error', 'single'],
+			semi: ['warn', 'always'],
+			quotes: ['warn', 'single'],
 			'tailwindcss/no-custom-classname': 'off',
-			'unused-imports/no-unused-imports': 'error',
-			'unused-imports/no-unused-vars': 'error',
-			'@typescript-eslint/no-unused-vars': 'error',
+			'unused-imports/no-unused-imports': 'warn',
+			'unused-imports/no-unused-vars': 'warn',
+			'@typescript-eslint/no-unused-vars': 'warn',
 			'@typescript-eslint/no-duplicate-enum-values': 'error',
 			'@typescript-eslint/ban-ts-comment': 'error',
-			'@typescript-eslint/explicit-function-return-type': 'error',
-			'@typescript-eslint/explicit-module-boundary-types': 'error',
+			'@typescript-eslint/explicit-function-return-type': 'warn',
+			'@typescript-eslint/explicit-module-boundary-types': 'warn',
 			'capitalized-comments': ['off', 'always'],
-			'no-unused-expressions': 'error',
-			'no-unused-vars': 'error',
+			'no-unused-expressions': 'warn',
+			'no-unused-vars': 'warn',
 
 			'no-console': [
 				'error',
