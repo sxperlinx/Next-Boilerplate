@@ -192,7 +192,8 @@ const orms = {
 				file: '/index.ts',
 				content: `
 					import { PrismaClient } from '@prisma/client';
-					export default const prisma = new PrismaClient();
+					const prisma = new PrismaClient();
+					export default prisma;
 				`,
 			},
 			{
