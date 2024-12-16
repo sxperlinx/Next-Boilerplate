@@ -1,5 +1,5 @@
-import { Children } from '@/_lib/interfaces/IChildren';
-import { Element } from 'lib/types/Element';
+import { Children } from 'lib/interfaces/children';
+import Element from 'lib/types/element';
 import type { Metadata } from 'next';
 import 'ui/css/globals.css';
 

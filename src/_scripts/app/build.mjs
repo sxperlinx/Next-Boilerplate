@@ -4,11 +4,7 @@ import { execSync } from 'node:child_process';
 import cliProgress from 'cli-progress';
 
 const tasks = [
-	{
-		command: 'npx prettier --write .',
-		message: 'Formatting code with Prettier',
-	},
-	{ command: 'npx eslint .', message: 'Linting code with ESLint' },
+	{ command: 'bun run lint', message: 'Linting code with ESLint' },
 	{ command: 'bun update --latest', message: 'Updating dependencies' },
 	{ command: 'next build', message: 'Updating dependencies' },
 ];
