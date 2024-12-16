@@ -30,14 +30,18 @@ You can view your images created with `docker images`.
 
 ### In existing projects
 
-To add support for Docker to an existing project, just copy the [`Dockerfile`](https://github.com/sxpersxnic/Next-Boilerplate/tree/main/Dockerfile) into the root of the project and add the following to the `next.config.js` file:
+To add support for Docker to an existing project, just copy the [`Dockerfile`](https://github.com/sxpersxnic/Next-Boilerplate/tree/main/Dockerfile) into the root of the project and add the following to the `next.config.ts` file:
 
 ```js
 // next.config.ts
-module.exports = {
-  // ... rest of the configuration.
+import type { NextConfig } from 'next';
+
+const nextConfig: NextConfig = {
   output: "standalone",
 };
+
+export default nextConfig;
+
 ```
 
 This will build the project as a standalone app inside the Docker image.
