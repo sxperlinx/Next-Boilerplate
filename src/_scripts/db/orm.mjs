@@ -119,18 +119,21 @@ const orms = {
 		],
 	},
 	drizzle: {
-		install: 'drizzle-orm pg dotenv',
+		install: 'drizzle-orm pg postgres dotenv',
 		dev: 'drizzle-kit tsx @types/pg',
 
 		files: [
 			{
-				name: 'Drizzle Setup',
+				name: 'Drizzle Index',
 				dir: './src/_db',
 				file: '/index.ts',
 				content: `
 					import 'dotenv/config';
 					import { drizzle } from 'drizzle-orm/node-postgres';
-					export const db = drizzle(process.env.DATABASE_URL!);
+					import postgres from 'postgres';
+     					
+     					const client = postgres(process.env.DATABASE_URL!, { prepare: false });
+					export const db = drizzle({ client });
 				`,
 			},
 			{
@@ -142,7 +145,7 @@ const orms = {
 					import { defineConfig } from 'drizzle-kit';
 
 					export default defineConfig({
-						out: './drizzle',
+						out: './src/_db/migrations',
 						schema: './src/_db/schema.ts',
 						dialect: 'postgresql',
 						dbCredentials: {
@@ -178,6 +181,15 @@ const orms = {
 				
 					const projectDir = process.cwd();
 					loadEnvConfig(projectDir);
+				`,
+			},
+			{
+				name: 'Drizzle queries',
+				dir: './src/_db',
+				file: '/queries.ts',
+				content: `
+					import { db } from './index';
+	  				import { InferSelectModel } from 'drizzle-orm';
 				`,
 			},
 		],
