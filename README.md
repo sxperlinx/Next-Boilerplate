@@ -19,3 +19,25 @@ bun orm
 ```
 
 This will ask which orm to setup (drizzle, prisma, supabase). Yes Supabase is not an orm but i just added it to orms to keep it simple.
+
+## Using Docker
+
+1. [Install Docker](https://docs.docker.com/get-docker/) on your machine.
+1. Build your container: `docker build -t nextjs-docker .`.
+1. Run your container: `docker run -p 3000:3000 nextjs-docker`.
+
+You can view your images created with `docker images`.
+
+### In existing projects
+
+To add support for Docker to an existing project, just copy the [`Dockerfile`](https://github.com/sxpersxnic/Next-Boilerplate/tree/main/Dockerfile) into the root of the project and add the following to the `next.config.js` file:
+
+```js
+// next.config.js
+module.exports = {
+  // ... rest of the configuration.
+  output: "standalone",
+};
+```
+
+This will build the project as a standalone app inside the Docker image.
