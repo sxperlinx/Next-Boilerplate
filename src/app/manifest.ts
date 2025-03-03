@@ -1,6 +1,6 @@
-import type { MetadataRoute } from 'next';
 import App from '@/lib/app.config';
+import { Manifest } from '@/lib/types';
 
-export default function manifest(): MetadataRoute.Manifest {
+export default function manifest(): Manifest {
 	return App.Meta.manifest;
 }

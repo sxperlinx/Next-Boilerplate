@@ -1,6 +1,6 @@
 import { satoshi } from '@/ui/typography/fonts';
 import { Metadata, MetadataRoute } from 'next';
-// import '@/lib/env.config.ts';
+import { type NextRequest, NextResponse } from 'next/server';
 
 /**
  * App configuration.
@@ -17,6 +17,40 @@ import { Metadata, MetadataRoute } from 'next';
  * @public
  */
 export default class App {
+
+	public static readonly Middleware = class {
+
+		public static readonly matcher = {
+			matcher: ['/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)']
+		}
+		
+		public static intercept(req: NextRequest): NextResponse {
+			const origin = req.headers.get('origin') ?? '';
+			const isAllowedOrigin = App.Cors.allowedOrigins.includes(origin);
+			const isPreflight = req.method === 'OPTIONS';
+
+			if (isPreflight) {
+				const preflightHeaders = {
+					...(isAllowedOrigin && { 'Access-Control-Allow-Origin': origin }),
+					...App.Cors.corsOptions,
+				};
+				return NextResponse.json({}, { headers: preflightHeaders });
+			}
+
+			const res = NextResponse.next();
+
+			if (isAllowedOrigin) {
+				res.headers.set('Access-Control-Allow-Origin', origin);
+			}
+
+			Object.entries(App.Cors.corsOptions).forEach(([key, value]) => {
+				res.headers.set(key, value);
+			});
+
+			return res;
+		}
+	}
+
 	public static readonly Cors = class {
 		public static readonly allowedOrigins = ['*']; // Change to your domain
 		public static readonly corsOptions = {

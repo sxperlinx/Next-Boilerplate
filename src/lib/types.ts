@@ -1,3 +1,5 @@
+import { MetadataRoute } from 'next';
+
 export type Element = React.JSX.Element;
 export type Message =
 	| { success: string }
@@ -30,3 +32,7 @@ export interface InputProps
 	extends React.InputHTMLAttributes<HTMLInputElement> {
 	type: 'submit' | 'button' | undefined;
 }
+
+export type Sitemap = MetadataRoute.Sitemap;
+export type Robots = MetadataRoute.Robots;
+export type Manifest = MetadataRoute.Manifest;
