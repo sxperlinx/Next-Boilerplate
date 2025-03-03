@@ -17,7 +17,7 @@
 	"jsxSingleQuote": true,
 	"printWidth": 80,
 	"arrowParens": "always",
-	"endOfLine": "lf",
+	"endOfLine": "crlf",
 	"bracketSpacing": true,
 	"htmlWhitespaceSensitivity": "css",
 	"singleAttributePerLine": true,

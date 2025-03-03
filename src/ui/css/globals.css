@@ -1,4 +1,5 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@config 'tailwind.config.ts';
 
 @theme {
 	--font-sans: var(--font-app);
@@ -142,7 +143,6 @@
 	--fg-disabled: var(--base-color-neutral-8);
 	--fg-muted: var(--base-color-neutral-8);
 	--fg-neutral: var(--base-color-neutral-9);
-
 }
 
 /*
