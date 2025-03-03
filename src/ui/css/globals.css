@@ -1,10 +1,11 @@
-@import 'tailwindcss';
-@config 'tailwind.config.ts';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
+/* @theme {
 	--font-sans: var(--font-app);
 	--font-mono: var(--font-app);
-}
+} */
 
 /*
 	Color scales from https://primer.style/foundations/color/base-scales
