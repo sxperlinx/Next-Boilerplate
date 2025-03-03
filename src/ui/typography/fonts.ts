@@ -1,6 +1,6 @@
 import localFont from 'next/font/local';
 
-const satoshi = localFont({
+export const satoshi = localFont({
 	src: [
 		{
 			path: '../../../public/fonts/Satoshi-Black.woff2',
@@ -63,7 +63,4 @@ const satoshi = localFont({
 			style: 'italic',
 		},
 	],
-	variable: '--font-satoshi',
 });
-
-export default satoshi;

@@ -1,6 +1,6 @@
+import { satoshi } from '@/ui/typography/fonts';
 import { Metadata, MetadataRoute } from 'next';
-import satoshi from '@/ui/typography/fonts';
-import '@/lib/env.config';
+// import '@/lib/env.config.ts';
 
 /**
  * App configuration.
@@ -29,22 +29,25 @@ export default class App {
 	};
 
 	public static readonly Typography = class {
-		public static readonly font = `${satoshi.className} antialiased`;
+		public static readonly font = satoshi;
 		// Add more typography options here.
 	};
 
 	public static readonly Env = class {
-		public static readonly isDev = process.env.NODE_ENV === 'development';
-		public static readonly isProd = process.env.NODE_ENV === 'production';
-		public static readonly baseUrl = App.Env.isDev
+		public static readonly nodeEnv = process.env.NODE_ENV
+			? process.env.NODE_ENV
+			: 'development';
+		public static readonly isDev = this.nodeEnv === 'development';
+		public static readonly isProd = this.nodeEnv === 'production';
+		public static readonly baseUrl = this.isDev
 			? 'http://localhost:3000'
 			: process.env.NEXT_PUBLIC_BASE_URL!;
 		// Add more environment variables here.
 	};
 
 	public static readonly Meta = class {
-		public static readonly lang = process.env.NEXT_PUBLIC_LANG
-			? process.env.NEXT_PUBLIC_LANG
+		public static readonly lang = process.env.NEXT_PUBLIC_LANG!
+			? process.env.NEXT_PUBLIC_LANG!
 			: 'en';
 		public static readonly metadataBase = new URL(App.Env.baseUrl);
 		private static readonly title = {

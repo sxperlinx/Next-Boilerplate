@@ -24,6 +24,7 @@ export default [
 			'**/public/',
 			'**/*.sh',
 			'**/jest.config.ts',
+			'**/*.mjs',
 		],
 	},
 	...compat.extends(

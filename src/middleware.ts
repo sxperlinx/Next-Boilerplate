@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { NextResponse, type NextRequest } from 'next/server';
 import App from '@/lib/app.config';
 
