@@ -21,11 +21,6 @@
 		],
 		"paths": {
 			"@/*": ["./src/*"],
-			"app/*": ["./src/app/*"],
-			"ui/*": ["./src/_ui/*"],
-			"lib/*": ["./src/_lib/*"],
-			"db/*": ["./src/_db/*"],
-			"scripts/*": ["./src/_scripts/*"]
 		}
 	},
 	"include": [
@@ -33,7 +28,6 @@
 		"**/*.ts",
 		"**/*.tsx",
 		".next/types/**/*.ts",
-		"src/_scripts/drizzle-migrate.mjs"
 	],
 	"exclude": ["node_modules"]
 }

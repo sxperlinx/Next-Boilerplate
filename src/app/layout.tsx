@@ -1,20 +1,15 @@
-import { Children } from 'lib/interfaces/children';
-import Element from 'lib/types/element';
-import type { Metadata } from 'next';
+import App from '@/lib/app.config';
+import { Children, Element } from '@/lib/types'; 
 import 'ui/css/globals.css';
 
-export const metadata: Metadata = {
-	title: {
-		template: '%s | Next-Boilerplate',
-		default: 'Next-Boilerplate',
-	},
-	description: 'Next boilerplate template',
-};
+export const metadata = App.Meta.data;
 
 export default function RootLayout({ children }: Children): Element {
 	return (
-		<html lang='en'>
-			<body>{children}</body>
+		<html lang={App.Meta.lang}>
+			<body className={App.Typography.font}>
+				{children}
+			</body>
 		</html>
 	);
 }

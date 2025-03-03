@@ -1,4 +1,4 @@
-import Element from '@/_lib/types/element';
+import { Element } from '@/lib/types';
 
 export default function Home(): Element {
 	return (
