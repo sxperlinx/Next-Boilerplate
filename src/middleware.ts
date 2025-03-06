@@ -1,9 +1,8 @@
-/* eslint-disable no-console */
 import { NextResponse, type NextRequest } from 'next/server';
-import App from '@/lib/app.config';
+import Middleware from '@/lib/config/middleware.config';
 
 export function middleware(req: NextRequest): NextResponse {
-	return App.Middleware.intercept(req);
+	return Middleware.intercept(req);
 }
 
-export const config = App.Middleware.matcher;
+export const config = Middleware.matcher;

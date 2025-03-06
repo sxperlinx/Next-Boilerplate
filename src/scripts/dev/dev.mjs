@@ -11,7 +11,6 @@ const tasks = [
 		command: 'npx eslint . --fix || echo "ESLint failed, continuing..."',
 		message: 'Linting code with ESLint',
 	},
-	{ command: 'bun update --latest', message: 'Updating dependencies' },
 	{
 		command: 'next dev --turbopack',
 		message: 'Starting development server on port: 3000',

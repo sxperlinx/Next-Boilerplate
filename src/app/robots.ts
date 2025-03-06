@@ -1,6 +1,6 @@
-import App from '@/lib/app.config';
+import Meta from '@/lib/config/meta.config';
 import { Robots } from '@/lib/types';
 
 export default function robots(): Robots {
-	return App.Meta.robots;
+	return Meta.robots;
 }
