@@ -1,0 +1,39 @@
+services:
+  webapp:
+    container_name: next-webapp-dev
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./.env.example:/app/.env.local
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - web_net_dev
+    command: bun run dev
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:latest
+    container_name: postgres-dev
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: dev_db
+    volumes:
+      - postgres_vol:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - web_net_dev
+networks:
+  web_net_dev:
+    external: false
+volumes:
+  postgres_vol:
+    external: false
+    driver: local

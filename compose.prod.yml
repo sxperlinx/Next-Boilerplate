@@ -1,0 +1,39 @@
+services:
+  webapp:
+    container_name: next-webapp
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./.env.local:/app/.env.local
+    restart: always
+    ports:
+      - 3000:80
+    networks:
+      - web_net
+    command: bun run start
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: next_webapp_db
+    volumes:
+      - postgres_vol:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - web_net
+networks:
+  web_net:
+    external: false
+volumes:
+  postgres_vol:
+    external: false
+    driver: local

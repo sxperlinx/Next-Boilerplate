@@ -1,6 +1,7 @@
 'use client';
 
-import { SubmitButtonProps, Element } from '@/lib/types';
+import { Element } from '@/lib/types';
+import { SubmitButtonProps } from '@/lib/props';
 import Button from '@/ui/components/buttons/button';
 import { useFormStatus } from 'react-dom';
 

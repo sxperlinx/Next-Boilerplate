@@ -5,7 +5,7 @@ export default function Home(): Element {
 		<main>
 			<h1>Home</h1>
 
-			<p>This app uses the Satoshi Font</p>
+			<p>This app provides boilerplate configuration</p>
 		</main>
 	);
 }

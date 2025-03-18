@@ -1,4 +1,5 @@
-import { Element, InputProps } from '@/lib/types';
+import { Element } from '@/lib/types';
+import { InputProps } from '@/lib/props';
 import cn from '@/lib/utils';
 
 export default function Input(
