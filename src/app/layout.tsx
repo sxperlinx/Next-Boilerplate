@@ -1,7 +1,7 @@
-import Typography from '@/lib/config/typography.config';
-import Meta from '@/lib/config/meta.config';
+import Typography from '@/config/typography';
 import { Children } from '@/lib/props';
 import { Element } from '@/lib/types';
+import Meta from '@/config/meta';
 import '@/ui/css/globals.css';
 
 export const metadata = Meta.data;

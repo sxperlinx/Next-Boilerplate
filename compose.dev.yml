@@ -3,19 +3,22 @@ services:
     container_name: next-webapp-dev
     build:
       context: .
-      dockerfile: .docker/Dockerfile
+      dockerfile: .docker/dev.Dockerfile
+    env_file: .env.development
     volumes:
       - ./src:/app/src
       - ./public:/app/public
-      - ./.env.example:/app/.env.local
+      - ./.env.development:/app/.env.local
     restart: always
     ports:
       - 3000:3000
     networks:
-      - web_net_dev
+      - front-tier
+      - back-tier
     command: bun run dev
     depends_on:
       - postgres
+
   postgres:
     image: postgres:latest
     container_name: postgres-dev
@@ -29,10 +32,14 @@ services:
     ports:
       - 5432:5432
     networks:
-      - web_net_dev
+      - back-tier
+
 networks:
-  web_net_dev:
+  front-tier:
     external: false
+  back-tier:
+    external: false
+
 volumes:
   postgres_vol:
     external: false

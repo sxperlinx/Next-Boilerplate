@@ -11,8 +11,8 @@ COPY src ./src
 COPY public ./public
 COPY next.config.mjs .
 COPY tsconfig.json .
-COPY .env.local ./.env.local
+COPY .env.development ./.env.local
 
 ENV NEXT_TELEMETRY_DISABLED 1
 
-CMD bun run app:start
+CMD bun run dev

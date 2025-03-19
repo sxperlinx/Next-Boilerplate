@@ -12,7 +12,7 @@ const orms = {
 		files: [
 			{
 				name: 'Server',
-				dir: './src/_lib/utils/supabase',
+				dir: './src/lib/supabase',
 				file: '/server.ts',
 				content: `
 					'use server';
@@ -45,7 +45,7 @@ const orms = {
 			},
 			{
 				name: 'Client',
-				dir: './src/_lib/utils/supabase',
+				dir: './src/lib/supabase',
 				file: '/client.ts',
 				content: `
 					import { createBrowserClient } from '@supabase/ssr';
@@ -59,7 +59,7 @@ const orms = {
 			},
 			{
 				name: 'Middleware',
-				dir: './src/_lib/utils/supabase',
+				dir: './src/lib/supabase',
 				file: '/middleware.ts',
 				content: `
 					'use server';
@@ -125,7 +125,7 @@ const orms = {
 		files: [
 			{
 				name: 'Drizzle Index',
-				dir: './src/_db',
+				dir: './src/db',
 				file: '/index.ts',
 				content: `
 					import 'dotenv/config';
@@ -145,8 +145,8 @@ const orms = {
 					import { defineConfig } from 'drizzle-kit';
 
 					export default defineConfig({
-						out: './src/_db/migrations',
-						schema: './src/_db/schema.ts',
+						out: './src/db/migrations',
+						schema: './src/db/schema.ts',
 						dialect: 'postgresql',
 						dbCredentials: {
 							url: process.env.DATABASE_URL!,
@@ -156,7 +156,7 @@ const orms = {
 			},
 			{
 				name: 'Schema',
-				dir: './src/_db',
+				dir: './src/db',
 				file: '/schema.ts',
 				content: `
 					import { pgTable, varchar } from 'drizzle-orm/pg-core';
@@ -174,7 +174,7 @@ const orms = {
 			},
 			{
 				name: 'Env Config',
-				dir: './src/_db',
+				dir: './src/db',
 				file: '/envConfig.ts',
 				content: `
 					import { loadEnvConfig } from '@next/env';
@@ -185,7 +185,7 @@ const orms = {
 			},
 			{
 				name: 'Drizzle queries',
-				dir: './src/_db',
+				dir: './src/db',
 				file: '/queries.ts',
 				content: `
 					import { db } from './index';
@@ -200,7 +200,7 @@ const orms = {
 		files: [
 			{
 				name: 'Index',
-				dir: './src/_db',
+				dir: './src/db',
 				file: '/index.ts',
 				content: `
 					import { PrismaClient } from '@prisma/client';
@@ -230,7 +230,7 @@ const orms = {
 			},
 			{
 				name: 'Env Config',
-				dir: './src/_db',
+				dir: './src/db',
 				file: '/envConfig.ts',
 				content: `
 						import { loadEnvConfig } from '@next/env';
@@ -249,7 +249,7 @@ const auth = [
 		dir: '.',
 		file: '/middleware.ts',
 		content: `
-				import { updateSession } from 'lib/utils/supabase/middleware';
+				import { updateSession } from '@/lib/supabase/middleware';
 				import { type NextRequest } from 'next/server';
 
 				export async function middleware(request: NextRequest) {
@@ -273,7 +273,7 @@ const auth = [
 	},
 	{
 		name: 'Auth Actions',
-		dir: './src/_lib/actions',
+		dir: './src/lib/actions',
 		file: '/auth.ts',
 		content: `
 			'use server';

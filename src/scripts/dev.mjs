@@ -19,12 +19,12 @@ const tasks = [
 
 try {
 	tasks.forEach((task) => {
-		console.log(`>>> ${task.message}`);
+		console.log(`::> ${task.message}`);
 		execSync(task.command, { stdio: 'inherit' });
 	});
 
-	console.log('Development Server script executed successfully');
+	console.log('::> Development Server script executed successfully');
 } catch (err) {
-	console.error('Error executing development server script:', err);
+	console.error('-:> Error executing development server script:', err);
 	process.exit(1);
 }

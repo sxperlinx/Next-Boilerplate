@@ -10,12 +10,21 @@ services:
       - ./.env.local:/app/.env.local
     restart: always
     ports:
-      - 3000:80
+      - 3000:3000
     networks:
-      - web_net
-    command: bun run start
+      - front-tier
+      - back-tier
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      retries: 3
+      start_period: 5s
+      timeout: 10s
+    command: bun run app:start
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
+
   postgres:
     image: postgres:latest
     container_name: postgres
@@ -23,16 +32,37 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123456
-      POSTGRES_DB: next_webapp_db
+      POSTGRES_DB: postgres
     volumes:
       - postgres_vol:/var/lib/postgresql/data
     ports:
       - 5432:5432
     networks:
-      - web_net
+      - back-tier
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 30s
+      retries: 5
+
+  proxy:
+    image: nginx:latest
+    container_name: nginx-proxy
+    volumes:
+      - ./proxy/nginx.conf:/etc/nginx/conf.d/nginx.conf
+    ports:
+      - 80:80
+    networks:
+      - front-tier
+    depends_on:
+      - webapp
+
 networks:
-  web_net:
+  front-tier:
     external: false
+  back-tier:
+    external: false
+
 volumes:
   postgres_vol:
     external: false

@@ -1,10 +1,6 @@
-import { Element } from "@/lib/types";
+import { Element } from '@/lib/types';
 
 export default function NotFound(): Element {
-  return (
-    <div>
-      //TODO: Replace with Not found UI.
-      Not found
-    </div>
-  );
+	//TODO: Replace with Not found UI.
+	return <div>Not found</div>;
 }

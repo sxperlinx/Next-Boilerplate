@@ -1,5 +1,5 @@
-import Meta from '@/lib/config/meta.config';
 import { Manifest } from '@/lib/types';
+import Meta from '@/config/meta';
 
 export default function manifest(): Manifest {
 	return Meta.manifest;
