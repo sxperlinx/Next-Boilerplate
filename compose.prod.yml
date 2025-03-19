@@ -15,7 +15,7 @@ services:
       - front-tier
       - back-tier
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      test: ['CMD', 'curl', '-f', 'http://localhost:3000']
       interval: 30s
       retries: 3
       start_period: 5s
@@ -40,7 +40,7 @@ services:
     networks:
       - back-tier
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "postgres"]
+      test: ['CMD', 'pg_isready', '-U', 'postgres']
       interval: 10s
       timeout: 30s
       retries: 5

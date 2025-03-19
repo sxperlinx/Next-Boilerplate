@@ -4,15 +4,7 @@ import Cors from '@/config/cors';
 export default class Middleware {
 	public static intercept(req: NextRequest): NextResponse {
 		const origin = req.headers.get('origin') ?? '';
-		
-		let isAllowedOrigin = false;
-		
-		if (Cors.allowedOrigins.includes('*')) {
-			isAllowedOrigin = true;
-		} else {
-			isAllowedOrigin = Cors.allowedOrigins.includes(origin);
-		}
-		
+		const isAllowedOrigin = Cors.allowedOrigins.includes(origin);
 		const isPreflight = req.method === 'OPTIONS';
 
 		if (isPreflight) {

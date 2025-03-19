@@ -6,7 +6,8 @@ function runContainer(env = 'development') {
 		console.log(`::: Running in ${env} :::`);
 		console.log(`::> Process cwd: ${process.cwd()}`);
 
-		const composeFile = env === 'production' ? 'compose.prod.yml' : 'compose.dev.yml';
+		const composeFile =
+			env === 'production' ? 'compose.prod.yml' : 'compose.dev.yml';
 		const networks = ['front-tier', 'back-tier'];
 
 		execSync('docker network prune --force', { stdio: 'inherit' });
