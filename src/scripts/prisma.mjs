@@ -7,7 +7,9 @@ import fs from 'fs';
  * @returns {void} void
  */
 async function setup() {
-	console.log("::> IMPORTANT! The setup of prisma isn't fully working yet, use 'bunx db:drizzle' instead.");
+	console.log(
+		"::> IMPORTANT! The setup of prisma isn't fully working yet, use 'bunx db:drizzle' instead.",
+	);
 	const prisma = orms.prisma;
 	try {
 		console.log(`::> Adding dependencies: ${prisma.install}`);
@@ -27,7 +29,6 @@ async function setup() {
 			fs.mkdirSync(file.dir, { recursive: true });
 			fs.writeFileSync(file.dir + file.file, file.content);
 		});
-
 
 		console.log(`::> prisma setup complete.`);
 		console.log(`::> Remember to run 'bunx prisma generate'.`);

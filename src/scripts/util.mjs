@@ -678,10 +678,7 @@ loadEnvConfig(projectDir);
 	prisma: {
 		install: '@prisma/client',
 		dev: 'prisma tsx',
-		run: [
-			'prisma',
-			'prisma init'
-		],
+		run: ['prisma', 'prisma init'],
 		files: [
 			{
 				name: 'Index',
