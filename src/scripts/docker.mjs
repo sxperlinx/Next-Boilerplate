@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { execSync } from 'node:child_process';
+import { select } from '@inquirer/prompts';
 
 function runContainer(env = 'development') {
 	try {
@@ -27,4 +28,16 @@ function runContainer(env = 'development') {
 	}
 }
 
-export { runContainer };
+async function run() {
+	const env = await select({
+		message: '::> Select environment:',
+		choices: [
+			{ name: 'Development', value: 'development' },
+			{ name: 'Production', value: 'production' },
+		],
+	});
+
+	runContainer(env);
+}
+
+run();
