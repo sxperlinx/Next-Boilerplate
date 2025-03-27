@@ -2,26 +2,28 @@ import { Sitemap, Robots, Manifest } from '@/lib/types';
 import { Metadata } from 'next';
 import Env from '@/config/env';
 export default class Meta {
-	public static readonly lang = 'en';
-	public static readonly metadataBase = new URL(Env.baseUrl);
-
-	private static readonly title = {
-		template: '%s | Next-Boilerplate',
-		default: 'Next-Boilerplate',
+	static readonly app = {
+		name: 'Next-Boilerplate',
+		lang: 'en',
+		metadataBase: new URL(Env.baseUrl),
+		description: 'Next boilerplate template',
 	};
 
-	private static readonly description = 'Next boilerplate template';
+	private static readonly title = {
+		template: `%s | ${this.app.name}`,
+		default: this.app.name,
+	};
 
 	public static readonly data: Metadata = {
 		title: this.title,
-		description: this.description,
-		metadataBase: this.metadataBase,
+		description: this.app.description,
+		metadataBase: this.app.metadataBase,
 		// Add more metadata here.
 	};
 
 	public static readonly sitemap: Sitemap = [
 		{
-			url: this.metadataBase.origin,
+			url: this.app.metadataBase.origin,
 			lastModified: new Date(),
 			changeFrequency: 'never',
 			priority: 1,
@@ -35,7 +37,7 @@ export default class Meta {
 			allow: '/',
 			disallow: ['/api/'],
 		},
-		sitemap: `${this.metadataBase.origin}/sitemap.xml`,
+		sitemap: `${this.app.metadataBase.origin}/sitemap.xml`,
 		// Add more robots rules here.
 	};
 

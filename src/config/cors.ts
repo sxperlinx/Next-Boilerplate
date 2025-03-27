@@ -1,8 +1,5 @@
 export default class Cors {
-	public static readonly allowedOrigins = [
-		'https://effective-yodel-vj774v4vx7jhxgrq-3000.app.github.dev',
-		'*',
-	]; // Change to your domain
+	public static readonly allowedOrigins = ['localhost:3000', '*']; // Change to your domain
 	public static readonly corsOptions = {
 		'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
 		'Access-Control-Allow-Headers': 'Content-Type, Authorization',

@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from 'next/server';
 import Middleware from '@/config/middleware';
 
-export function middleware(req: NextRequest): NextResponse {
+export async function middleware(req: NextRequest): Promise<NextResponse> {
 	return Middleware.intercept(req);
 }
 

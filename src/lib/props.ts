@@ -1,6 +1,6 @@
 import { ForwardRefExoticComponent, RefAttributes, SVGProps } from 'react';
 
-export type Children = { children: React.ReactNode };
+export type Children = { children: Readonly<React.ReactNode> };
 export type Ref = React.RefObject<HTMLElement>;
 export type RefCallback = (node: HTMLElement) => void;
 
@@ -26,6 +26,11 @@ export interface SubmitButtonProps extends ButtonProps {
 export interface InputProps
 	extends React.InputHTMLAttributes<HTMLInputElement> {
 	type: 'submit' | 'button' | undefined;
+}
+
+export interface FormItemProps
+	extends React.FieldsetHTMLAttributes<HTMLFieldSetElement> {
+	label: string;
 }
 
 export type Icon = ForwardRefExoticComponent<

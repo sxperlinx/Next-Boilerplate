@@ -1,11 +1,17 @@
 import { type NextRequest, NextResponse } from 'next/server';
+import logRequest from '@/lib/log';
 import Cors from '@/config/cors';
 
 export default class Middleware {
-	public static intercept(req: NextRequest): NextResponse {
+	public static async intercept(req: NextRequest): Promise<NextResponse> {
 		const origin = req.headers.get('origin') ?? '';
-		const isAllowedOrigin = Cors.allowedOrigins.includes(origin);
+		const isAllowedOrigin = Cors.allowedOrigins.map((allowedOrigin) => {
+			return origin.includes(allowedOrigin) || allowedOrigin === '*';
+		});
 		const isPreflight = req.method === 'OPTIONS';
+
+		const clone = req;
+		await logRequest(clone);
 
 		if (isPreflight) {
 			const preflightHeaders = {

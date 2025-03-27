@@ -8,7 +8,7 @@ export const metadata = Meta.data;
 
 export default function RootLayout({ children }: Children): Element {
 	return (
-		<html lang={Meta.lang}>
+		<html lang={Meta.app.lang}>
 			<body className={`${Typography.font.className} antialiased`}>
 				{children}
 			</body>
