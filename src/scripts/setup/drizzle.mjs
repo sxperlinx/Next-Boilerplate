@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-import { execute, script_run, run, orms } from './util.mjs';
+import { script_run, run, orms } from '../util.mjs';
 import { execSync } from 'node:child_process';
 import fs from 'fs';
 
 /**
  * @returns {void} void
  */
-async function setup() {
+function setup() {
 	const drizzle = orms.drizzle;
 	try {
 		console.log(`::> Setting up drizzle...`);
@@ -19,11 +19,9 @@ async function setup() {
 		console.log(`::> Adding dependencies: ${drizzle.install}`);
 		execSync(`bun add ${drizzle.install}`, { stdio: 'inherit' });
 
-		console.log(`::> drizzle setup complete.`);
-		execute;
-		console.log('::> Done.');
+		console.log(`::> Drizzle setup complete.`);
 	} catch (err) {
-		console.error(`-:> Error setting up drizzle:`, err);
+		console.error(`-:> Error setting up drizzle: ${err}`);
 		process.exit(1);
 	}
 }
@@ -69,7 +67,6 @@ async function drizzle() {
 	const tasks = [
 		{
 			name: 'Set up Drizzle ORM',
-			value: 0,
 			fn: setup,
 		},
 		{

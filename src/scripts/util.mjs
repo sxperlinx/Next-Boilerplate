@@ -499,6 +499,228 @@ const auth = [
 	},
 ];
 
+const docker = {
+	files: [
+		{
+			name: 'Dockerfile Development',
+			dir: './.docker',
+			file: '/dev.Dockerfile',
+			content: 
+`FROM node:23.10-alpine3.20 AS base
+FROM base AS builder
+
+WORKDIR /app
+
+COPY package.json bun.lockb ./
+
+RUN npm install -g bun && bun install
+
+COPY src ./src
+COPY public ./public
+COPY next.config.mjs .
+COPY tsconfig.json .
+COPY .env.development ./.env.local
+
+ENV NEXT_TELEMETRY_DISABLED 1
+
+CMD bun run dev
+`,
+		},
+		{
+			name: 'Dockerfile Production',
+			dir: './.docker',
+			file: '/Dockerfile',
+			content: 
+`
+FROM node:23.10-alpine3.20 AS base
+FROM base AS builder
+
+WORKDIR /app
+
+COPY package.json bun.lockb ./
+
+RUN npm install -g bun && bun install
+
+COPY src ./src
+COPY public ./public
+COPY next.config.mjs .
+COPY tsconfig.json .
+COPY .env.local ./.env.local
+
+ENV NEXT_TELEMETRY_DISABLED 1
+
+CMD bun run app:start
+`,
+		},
+		{
+			name: 'Compose Development',
+			dir: '.',
+			file: '/compose.dev.yml',
+			content: 
+`services:
+  webapp:
+    container_name: next-webapp-dev
+    build:
+      context: .
+      dockerfile: .docker/dev.Dockerfile
+    env_file: .env.development
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./.env.development:/app/.env.local
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - front-tier
+      - back-tier
+    command: bun run dev
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres-dev
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: dev_db
+    volumes:
+      - postgres_vol:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - back-tier
+
+networks:
+  front-tier:
+    external: false
+  back-tier:
+    external: false
+
+volumes:
+  postgres_vol:
+    external: false
+    driver: local
+
+`,
+		},
+		{
+			name: 'Compose Production',
+			dir: '.',
+			file: '/compose.yml',
+			content:
+`services:
+  webapp:
+    container_name: next-webapp
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./.env.local:/app/.env.local
+    restart: always
+    ports:
+      - '81:3000'
+    networks:
+      - front-tier
+      - back-tier
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:3000']
+      interval: 30s
+      retries: 3
+      start_period: 5s
+      timeout: 10s
+    depends_on:
+      postgres:
+        condition: service_healthy
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: postgres
+    volumes:
+      - postgres_vol:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    networks:
+      - back-tier
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-U', 'postgres']
+      interval: 10s
+      timeout: 30s
+      retries: 5
+
+  proxy:
+    image: nginx:latest
+    container_name: nginx-proxy
+    volumes:
+      - ./proxy/nginx.conf:/etc/nginx/conf.d/nginx.conf
+    ports:
+      - '80:80'
+    networks:
+      - front-tier
+    depends_on:
+      - webapp
+
+networks:
+  front-tier:
+    external: false
+  back-tier:
+    external: false
+
+volumes:
+  postgres_vol:
+    external: false
+    driver: local
+`,
+		},
+		{
+			name: '.dockerignore File',
+			dir: '.',
+			file: '/.dockerignore',
+			content: 
+`.dockerignore
+node_modules
+npm-debug.log
+README.md
+.git
+`,
+		},
+		{
+			name: 'Nginx Dockerfile',
+			dir: './proxy',
+			file: '/Dockerfile',
+			content:
+`FROM nginx:latest
+
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+`,
+		},
+		{
+			name: 'Nginx Config',
+			dir: './proxy',
+			file: '/nginx.conf',
+			content:
+`server {
+  listen 80;
+  listen [::]:80;
+  server_name localhost;
+  location / {
+    proxy_pass http://localhost;
+  }
+}
+`,
+		},
+	],
+};
+
 const orms = {
 	supabase: {
 		install: '@supabase/supabase-js @supabase/ssr',
@@ -770,4 +992,4 @@ async function script_run(tasks) {
 	execute(tasks[taskChoice]);
 }
 
-export { run, auth, orms, execute, script_run };
+export { run, auth, orms, docker, execute, script_run };

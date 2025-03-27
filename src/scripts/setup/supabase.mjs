@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { execute, script_run, run, orms } from './util.mjs';
+import { execute, script_run, run, orms } from '../util.mjs';
 import { execSync } from 'node:child_process';
 import fs from 'fs';
 
