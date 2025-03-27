@@ -32,7 +32,7 @@
 		"**/*.ts",
 		"**/*.tsx",
 		".next/types/**/*.ts",
-		"next.config.mjs",
+		"next.config.ts",
 		"src/__tests__/config/middleware.test.js"
 	],
 	"exclude": ["node_modules"]
