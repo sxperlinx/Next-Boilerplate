@@ -13,12 +13,14 @@ git clone https://github.com/sxpersxnic/Next-Boilerplate.git
 ## Set up database
 
 ### Drizzle
-  1. Run `bun run drizzle`,
 
->[!NOTE]
-> Currently only the drizzle ORM is supported. If you prefer to use prisma or supabase, set it up manually.
+1. Run `bun run drizzle`,
+
+> [!NOTE] Currently only the drizzle ORM is supported. If you prefer to use
+> prisma or supabase, set it up manually.
 
 ## Set up Docker
 
 1. [Install Docker](https://docs.docker.com/get-docker/) on your machine.
-2. Setup Docker in the project: `bun run docker`. This will prompt a menu. Select 'setup'.
+2. Setup Docker in the project: `bun run docker`. This will prompt a menu.
+   Select 'setup'.

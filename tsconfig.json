@@ -28,7 +28,8 @@
 		"**/*.ts",
 		"**/*.tsx",
 		".next/types/**/*.ts",
-		"next.config.mjs"
-, "src/__tests__/config/middleware.test.js"	],
+		"next.config.mjs",
+		"src/__tests__/config/middleware.test.js"
+	],
 	"exclude": ["node_modules"]
 }

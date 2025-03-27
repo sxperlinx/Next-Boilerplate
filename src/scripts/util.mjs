@@ -505,8 +505,7 @@ const docker = {
 			name: 'Dockerfile Development',
 			dir: './.docker',
 			file: '/dev.Dockerfile',
-			content: 
-`FROM node:23.10-alpine3.20 AS base
+			content: `FROM node:23.10-alpine3.20 AS base
 FROM base AS builder
 
 WORKDIR /app
@@ -530,8 +529,7 @@ CMD bun run dev
 			name: 'Dockerfile Production',
 			dir: './.docker',
 			file: '/Dockerfile',
-			content: 
-`
+			content: `
 FROM node:23.10-alpine3.20 AS base
 FROM base AS builder
 
@@ -556,8 +554,7 @@ CMD bun run app:start
 			name: 'Compose Development',
 			dir: '.',
 			file: '/compose.dev.yml',
-			content: 
-`services:
+			content: `services:
   webapp:
     container_name: next-webapp-dev
     build:
@@ -610,8 +607,7 @@ volumes:
 			name: 'Compose Production',
 			dir: '.',
 			file: '/compose.yml',
-			content:
-`services:
+			content: `services:
   webapp:
     container_name: next-webapp
     build:
@@ -684,8 +680,7 @@ volumes:
 			name: '.dockerignore File',
 			dir: '.',
 			file: '/.dockerignore',
-			content: 
-`.dockerignore
+			content: `.dockerignore
 node_modules
 npm-debug.log
 README.md
@@ -696,8 +691,7 @@ README.md
 			name: 'Nginx Dockerfile',
 			dir: './proxy',
 			file: '/Dockerfile',
-			content:
-`FROM nginx:latest
+			content: `FROM nginx:latest
 
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
@@ -707,8 +701,7 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 			name: 'Nginx Config',
 			dir: './proxy',
 			file: '/nginx.conf',
-			content:
-`server {
+			content: `server {
   listen 80;
   listen [::]:80;
   server_name localhost;

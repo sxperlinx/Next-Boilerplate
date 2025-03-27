@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import { execSync } from 'node:child_process';
 import { script_run, run, docker } from '../util.mjs';
+import { execSync } from 'node:child_process';
 import { select } from '@inquirer/prompts';
 import fs from 'fs';
 
@@ -16,7 +16,6 @@ function setup() {
 			fs.writeFileSync(file.dir + file.file, file.content);
 		});
 		console.log('::> Docker setup complete.');
-
 	} catch (err) {
 		console.error(`-:> Error setting up Docker: ${err}`);
 		process.exit(1);
@@ -28,7 +27,7 @@ async function connect() {
 		{
 			command: 'docker exec -it postgres psql -U postgres',
 			message: 'Connecting to database',
-		}
+		},
 	];
 
 	try {
