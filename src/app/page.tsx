@@ -1,5 +1,9 @@
-import { Element } from '@/lib/types';
-import Meta from '@/config/meta';
+import { Element } from '@lib/types';
+import Meta from '@config/meta';
+
+export const metadata = {
+	title: Meta.app.pages['home'].title,
+};
 
 export default function Home(): Element {
 	return (

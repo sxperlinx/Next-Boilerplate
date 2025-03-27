@@ -1,4 +1,4 @@
-import { Element } from '@/lib/types';
+import { Element } from '@lib/types';
 
 export default function Loading(): Element {
 	// TODO: Replace with Skeleton UI.
