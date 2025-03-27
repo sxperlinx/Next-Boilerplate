@@ -1,5 +1,7 @@
 # Next Boilerplate Template
 
+This is a template repository, for quick starting your [Next.js](https://nextjs.org) app.
+
 ## Get started
 
 ```sh
