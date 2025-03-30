@@ -1,6 +1,4 @@
-/* eslint-disable import/no-anonymous-default-export */
 import unusedImports from 'eslint-plugin-unused-imports';
-import tailwindcss from 'eslint-plugin-tailwindcss';
 import tsParser from '@typescript-eslint/parser';
 import { FlatCompat } from '@eslint/eslintrc';
 import { fileURLToPath } from 'node:url';
@@ -9,32 +7,40 @@ import js from '@eslint/js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 const compat = new FlatCompat({
 	baseDirectory: __dirname,
 	recommendedConfig: js.configs.recommended,
 	allConfig: js.configs.all,
 });
 
-export default [
+const eslintConfig = [
 	{
 		ignores: [
 			'**/node_modules/',
 			'**/.next/',
+			'**/.vercel/',
+			'**/.git/',
+			'**/.github/',
+			'**/.vscode/',
 			'**/assets/',
 			'**/public/',
+			'**/jest.config.*',
+			'**/*.mjs',
 			'**/*.sh',
-			'**/jest.config.ts',
 		],
 	},
 	...compat.extends(
+		'prettier',
+		'next',
 		'next/core-web-vitals',
 		'next/typescript',
-		'prettier',
-		'plugin:tailwindcss/recommended',
+		'plugin:@typescript-eslint/recommended',
+		'plugin:react/recommended',
+		'plugin:react-hooks/recommended',
 	),
 	{
 		plugins: {
-			tailwindcss,
 			'unused-imports': unusedImports,
 		},
 
@@ -53,7 +59,6 @@ export default [
 		settings: {
 			tailwindcss: {
 				callees: ['cn'],
-				config: './tailwind.config.ts',
 			},
 
 			next: {
@@ -72,6 +77,7 @@ export default [
 			'@typescript-eslint/ban-ts-comment': 'error',
 			'@typescript-eslint/explicit-function-return-type': 'warn',
 			'@typescript-eslint/explicit-module-boundary-types': 'warn',
+			'react/react-in-jsx-scope': 'off',
 			'capitalized-comments': ['off', 'always'],
 			'no-unused-expressions': 'warn',
 			'no-unused-vars': 'warn',
@@ -107,3 +113,5 @@ export default [
 		},
 	},
 ];
+
+export default eslintConfig;
