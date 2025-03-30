@@ -499,7 +499,7 @@ const auth = [
 	},
 ];
 
-const docker = {
+const dockerFiles = {
 	files: [
 		{
 			name: 'Dockerfile Development',
@@ -985,4 +985,4 @@ async function script_run(tasks) {
 	execute(tasks[taskChoice]);
 }
 
-export { run, auth, orms, docker, execute, script_run };
+export { run, auth, orms, dockerFiles, execute, script_run };
