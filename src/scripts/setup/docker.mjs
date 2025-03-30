@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { script_run, run, docker } from '../util.mjs';
+import { script_run, run, dockerFiles } from '../util.mjs';
 import { execSync } from 'node:child_process';
 import { select } from '@inquirer/prompts';
 import fs from 'fs';
@@ -10,7 +10,7 @@ import fs from 'fs';
 function setup() {
 	try {
 		console.log('::> Setting up Docker...');
-		docker.files.map((file) => {
+		dockerFiles.files.map((file) => {
 			console.log(`::> Adding ${file.name}: ${file.dir + file.file}`);
 			fs.mkdirSync(file.dir, { recursive: true });
 			fs.writeFileSync(file.dir + file.file, file.content);
