@@ -1,9 +1,8 @@
 'use client';
 
 import { HomeIcon } from '@heroicons/react/24/outline';
+import { Element, NavLink } from '@/lib/types';
 import { usePathname } from 'next/navigation';
-import { NavLink } from '@/lib/props';
-import { Element } from '@/lib/types';
 import cn from '@/lib/utils';
 import Link from 'next/link';
 import React from 'react';

@@ -1,5 +1,4 @@
-import { FormItemProps } from '@/lib/props';
-import { Element } from '@/lib/types';
+import { Element, FormItemProps } from '@/lib/types';
 
 export default function FormItem({
 	children,

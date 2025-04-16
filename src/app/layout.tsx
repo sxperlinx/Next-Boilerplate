@@ -1,6 +1,5 @@
+import { Element, Children } from '@lib/types';
 import Typography from '@config/typography';
-import { Children } from '@lib/props';
-import { Element } from '@lib/types';
 import Meta from '@config/meta';
 import '@css/globals.css';
 
