@@ -17,7 +17,7 @@ export interface ButtonProps
 		| null
 		| undefined;
 	size: 'default' | 'sm' | 'lg' | 'icon' | null | undefined;
-	asChild?: boolean;
+	label: string;
 }
 
 export interface SubmitButtonProps extends ButtonProps {

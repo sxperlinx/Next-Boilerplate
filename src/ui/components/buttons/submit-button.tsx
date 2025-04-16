@@ -5,8 +5,8 @@ import Button from '@/ui/components/buttons/button';
 import { useFormStatus } from 'react-dom';
 
 export function SubmitButton({
-	children,
 	pendingText = 'Submitting...',
+	label = 'Submit',
 	...props
 }: SubmitButtonProps): Element {
 	const { pending } = useFormStatus();
@@ -14,10 +14,11 @@ export function SubmitButton({
 	return (
 		<Button
 			type='submit'
+			label={label}
 			aria-disabled={pending}
 			{...props}
 		>
-			{pending ? pendingText : children}
+			{pending ? pendingText : label}
 		</Button>
 	);
 }

@@ -1,21 +1,22 @@
+'use client';
+
 import { buttonVariants } from './button-variants';
-// import { Slot } from '@radix-ui/react-slot';
 import { Element, ButtonProps } from '@/lib/types';
 import cn from '@/lib/utils';
 import React from 'react';
 
 function Button(
-	{ className, variant, size, asChild = false, ...props }: ButtonProps,
+	{ className, variant, label, size, ...props }: ButtonProps,
 	ref: React.Ref<HTMLButtonElement>,
 ): Element {
-	// const Comp = asChild ? Slot : 'button';
-	const Comp = 'button';
 	return (
-		<Comp
+		<button
 			className={cn(buttonVariants({ variant, size, className }))}
 			ref={ref}
 			{...props}
-		/>
+		>
+			{label}
+		</button>
 	);
 }
 
