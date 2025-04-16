@@ -1,13 +1,12 @@
 'use client';
 
+import { Element, SubmitButtonProps } from '@/lib/types';
 import Button from '@/ui/components/buttons/button';
-import { SubmitButtonProps } from '@/lib/props';
 import { useFormStatus } from 'react-dom';
-import { Element } from '@/lib/types';
 
 export function SubmitButton({
-	children,
 	pendingText = 'Submitting...',
+	label = 'Submit',
 	...props
 }: SubmitButtonProps): Element {
 	const { pending } = useFormStatus();
@@ -15,10 +14,11 @@ export function SubmitButton({
 	return (
 		<Button
 			type='submit'
+			label={label}
 			aria-disabled={pending}
 			{...props}
 		>
-			{pending ? pendingText : children}
+			{pending ? pendingText : label}
 		</Button>
 	);
 }
