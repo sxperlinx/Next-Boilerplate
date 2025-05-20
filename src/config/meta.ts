@@ -1,6 +1,6 @@
-import { Sitemap, Robots, Manifest, AppData } from '@lib/types';
+import { Sitemap, Robots, Manifest, AppData } from '@/lib/types';
 import { Metadata } from 'next';
-import Env from '@config/env';
+import Env from '@/config/env';
 
 export default class Meta {
 	static readonly title = 'Next-Boilerplate';

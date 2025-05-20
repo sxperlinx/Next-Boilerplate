@@ -1,6 +1,6 @@
 'use client';
 
-import { Element } from '@lib/types';
+import { Element } from '@/lib/types';
 
 export default function GlobalError(): Element {
 	//TODO: Replace with Global Error UI.

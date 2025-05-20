@@ -33,7 +33,7 @@ export default class Env {
 	public static readonly isDev = this.nodeEnv === 'development';
 	public static readonly isProd = this.nodeEnv === 'production';
 
-	// public static readonly baseUrl = this.isDev
-	// 	? 'http://localhost:3000'
-	// 	: this.get('NEXT_PUBLIC_BASE_URL');
+	public static readonly baseUrl = this.isDev
+		? 'http://localhost:3000'
+		: this.get('NEXT_PUBLIC_BASE_URL');
 }

@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server';
-import Cors from '@config/cors';
+import Cors from '@/config/cors';
 
 export default class Middleware {
 	public static async intercept(req: NextRequest): Promise<NextResponse> {
