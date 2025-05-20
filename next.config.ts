@@ -1,14 +1,17 @@
 // @ts-check
 import { PHASE_DEVELOPMENT_SERVER } from 'next/constants';
 import type { NextConfig } from 'next';
+import Env from '@/config/env';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (phase: unknown): NextConfig => {
 	const isDev = phase === PHASE_DEVELOPMENT_SERVER;
 
 	const nextConfig: NextConfig = {
-		assetPrefix: isDev ? undefined : 'https://cdn.example.com',
-		allowedDevOrigins: ['http://localhost:3000'],
+		allowedDevOrigins: [
+			'http://localhost:3000',
+			Env.get('NEXT_PUBLIC_DEV_ORIGIN'),
+		],
 		logging: isDev
 			? {
 					fetches: {
@@ -20,8 +23,6 @@ export default (phase: unknown): NextConfig => {
 			: false,
 		devIndicators: false,
 		distDir: 'dist',
-		pageExtensions: ['tsx'],
-
 		experimental: {
 			cssChunking: true,
 		},
