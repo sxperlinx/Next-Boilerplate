@@ -1,6 +1,30 @@
-import { Manifest } from '@/lib/types';
-import Meta from '@/config/meta';
+import { MetadataRoute } from 'next';
 
-export default function manifest(): Manifest {
-	return Meta.manifest;
+export default function manifest(): MetadataRoute.Manifest {
+	return {
+		name: 'Next-Boilerplate',
+		short_name: 'Boilerplate',
+		description: 'Next boilerplate',
+		start_url: '/',
+		display: 'standalone',
+		background_color: '#ffffff',
+		theme_color: '#000000',
+		icons: [
+			{
+				src: '/icon/icon-192x192.png',
+				sizes: '192x192',
+				type: 'image/png',
+			},
+			{
+				src: '/icon/icon-512x512.png',
+				sizes: '512x512',
+				type: 'image/png',
+			},
+			{
+				src: '/icon/favicon.ico',
+				sizes: 'any',
+				type: 'image/x-icon',
+			},
+		],
+	};
 }
