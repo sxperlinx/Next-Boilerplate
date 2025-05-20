@@ -12,9 +12,7 @@
 		"prettier",
 		"tailwindcss"
 	],
-	"workspaces": [
-		"./*"
-	],
+	"workspaces": ["./*"],
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/sxperlinx/Next-Boilerplate",
@@ -82,9 +80,6 @@
 		"typescript-eslint": "^8.32.1"
 	},
 	"lint-staged": {
-		"*.ts?(x)": [
-			"bun run format",
-			"bun run app:lint"
-		]
+		"*.ts?(x)": ["bun run format", "bun run app:lint"]
 	}
 }
