@@ -5,6 +5,8 @@ This is a template repository, for quick starting your
 
 ## Get started
 
+### 1. Clone the repository
+
 ```sh
 npx create-next-app@latest <project-name> --example "https://github.com/sxpersxnic/Next-Boilerplate"
 
@@ -13,17 +15,26 @@ npx create-next-app@latest <project-name> --example "https://github.com/sxpersxn
 git clone https://github.com/sxpersxnic/Next-Boilerplate.git
 ```
 
-## Set up database
+### 2. Install dependencies
 
-### Drizzle
+```sh
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
 
-1. Run `bun run drizzle`,
+### 3. Run the development server
 
-> [!NOTE] Currently only the drizzle ORM is supported. If you prefer to use
-> prisma or supabase, set it up manually.
-
-## Set up Docker
-
-1. [Install Docker](https://docs.docker.com/get-docker/) on your machine.
-2. Setup Docker in the project: `bun run docker`. This will prompt a menu.
-   Select 'setup'.
+```sh
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
