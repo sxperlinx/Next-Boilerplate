@@ -15,14 +15,6 @@ export default class Meta {
 				url: '/',
 				title: `Home | ${Meta.title}`,
 			},
-			about: {
-				url: '/about',
-				title: 'About',
-			},
-			contact: {
-				url: '/contact',
-				title: 'Contact',
-			},
 			api: {
 				url: '/api',
 				title: 'API',
