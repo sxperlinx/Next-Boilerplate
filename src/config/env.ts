@@ -26,14 +26,12 @@ export default class Env {
 		}
 	}
 
-	public static readonly port = this.get('PORT', '3000');
-
 	public static readonly nodeEnv = this.get('NODE_ENV', 'development');
 
 	public static readonly isDev = this.nodeEnv === 'development';
 	public static readonly isProd = this.nodeEnv === 'production';
 
 	public static readonly baseUrl = this.isDev
-		? 'http://localhost:3000'
+		? this.get('NEXT_PUBLIC_DEV_ORIGIN')
 		: this.get('NEXT_PUBLIC_BASE_URL');
 }

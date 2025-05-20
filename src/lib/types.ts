@@ -1,5 +1,4 @@
 import { ForwardRefExoticComponent, RefAttributes, SVGProps } from 'react';
-import { MetadataRoute } from 'next';
 
 export type Children = { children: Readonly<React.ReactNode> };
 export type Element = React.JSX.Element;
@@ -15,10 +14,6 @@ export type Message =
 	| { success: string }
 	| { error: string }
 	| { message: string };
-
-export type Sitemap = MetadataRoute.Sitemap;
-export type Robots = MetadataRoute.Robots;
-export type Manifest = MetadataRoute.Manifest;
 
 export interface AppData {
 	name: string;
