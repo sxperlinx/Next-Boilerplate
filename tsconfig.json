@@ -20,21 +20,9 @@
 			}
 		],
 		"paths": {
-			"@/*": ["./src/*"],
-			"@ui/*": ["./src/ui/*"],
-			"@lib/*": ["./src/lib/*"],
-			"@config/*": ["./src/config/*"],
-			"@css/*": ["./src/ui/css/*"]
+			"@/*": ["./src/*"]
 		}
 	},
-	"include": [
-		"**/*.ts",
-		"**/*.tsx",
-		".next/types/**/*.ts",
-		"next-env.d.ts",
-		"next.config.ts",
-		"src/__tests__/config/middleware.test.js",
-		"dist/types/**/*.ts"
-	],
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
 	"exclude": ["node_modules"]
 }
