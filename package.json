@@ -1,6 +1,6 @@
 {
 	"name": "next-boilerplate",
-	"version": "2.0.7",
+	"version": "3.0.0",
 	"description": "Boilerplate project for Next.js",
 	"author": "sxpersxnic",
 	"license": "MIT",
@@ -26,11 +26,6 @@
 		"test:watch": "jest --watch",
 		"test": "jest",
 		"format": "prettier --write .",
-		"app:dev": "node ./src/scripts/run/dev.mjs",
-		"app:start": "node ./src/scripts/run/start.mjs",
-		"app:lint": "node ./src/scripts/quality/lint.mjs",
-		"drizzle": "node ./src/scripts/setup/drizzle.mjs",
-		"docker": "node ./src/scripts/setup/docker.mjs",
 		"prepare": "husky",
 		"lint-staged": "lint-staged"
 	},
